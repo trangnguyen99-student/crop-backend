@@ -44,7 +44,7 @@ app.use("/images", express.static(path.join(__dirname, "uploads")));
 
 //public routes
 app.use("/api/user", userRoutes);
-app.use("api/admin/user", adminUserRoutes);
+app.use("/api/admin/user", adminUserRoutes);
 
 //Run server listing in port default
 app.listen(port, () => {

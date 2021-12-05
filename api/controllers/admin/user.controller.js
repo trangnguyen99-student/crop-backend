@@ -58,7 +58,7 @@ exports.createUser = (req, res) => {
         });
     });
   });
-}
+};
 
 exports.updateRole = (req, res) => {
   User.findOneAndUpdate(

@@ -8,9 +8,9 @@ const {
 const { checkSignin, checkAdmin } = require("../../middlewares/auth.middleware");
 const router = express.Router();
 
-router.get("/", checkSignin, checkAdmin, getAllUser);
+router.get("/", getAllUser);
 
-router.post("/", checkSignin, checkAdmin, createUser);
+router.post("/", createUser);
 
 router.post("/role", checkSignin, checkAdmin, updateRole);
 
