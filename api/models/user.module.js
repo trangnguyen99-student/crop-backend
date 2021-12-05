@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
     },
-    password: {
+    has_password: {
       type: String,
     },
     firstName: {
@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.virtual("password").set(function (password) {
-  this.password = bcrypt.hashSync(password, 10);
+  this.has_password = bcrypt.hashSync(password, 10);
 });
 
 userSchema.virtual("fullName").get(function () {
@@ -46,7 +46,7 @@ userSchema.virtual("fullName").get(function () {
 
 userSchema.methods = {
   authenticate: function (password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.has_password);
   },
 };
 

@@ -1,4 +1,4 @@
-const multiple = require("./multiple");
+const multiple = require("./multiple.middleware");
 
 exports.upload = async (req, res, next) => {
   try {

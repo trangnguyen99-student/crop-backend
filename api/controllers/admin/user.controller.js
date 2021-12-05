@@ -37,6 +37,29 @@ exports.getUserById = (req, res) => {
   });
 };
 
+exports.createUser = (req, res) => {
+  User.findOne({ email: req.body.email }).exec((error, user) => {
+    if (user) {
+      return res.status(400).json({
+        message: "Tài khoản đã tồn tại",
+      });
+    }
+    const _user = new User(req.body);
+
+    _user.save((error, data) => {
+      if (error)
+        return res.status(400).json({
+          message: "Đã xảy ra lỗi",
+        });
+
+      if (data)
+        return res.status(201).json({
+          message: "Tạo tài khoản thành công",
+        });
+    });
+  });
+}
+
 exports.updateRole = (req, res) => {
   User.findOneAndUpdate(
     { _id: req.body.id },

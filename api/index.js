@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const env = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
+const path = require("path");
+
+//import routes
+const userRoutes = require("./routers/user.route");
+const adminUserRoutes = require("./routers/admin/user.route")
 
 const app = express();
 const port = process.env.SERVER_PORT | 3000;
@@ -35,6 +40,11 @@ mongoose
 app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "uploads")));
+
+//public routes
+app.use("/api/user", userRoutes);
+app.use("api/admin/user", adminUserRoutes);
 
 //Run server listing in port default
 app.listen(port, () => {
